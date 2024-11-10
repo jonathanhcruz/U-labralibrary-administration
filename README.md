@@ -1,6 +1,6 @@
 # Terminal-Based Book Management Project
 
-This project is a terminal-based application for managing a list of books. It allows users to list, add, update, delete, and sort books by various criteria. The data is mocked, and functionalities are organized into different packages for better structure and maintainability.
+This project is a terminal-based application for managing a list of books. It was developed as part of a university assignment for Compensar and allows users to list, add, update, delete, and sort books by various criteria. The data is mocked, and functionalities are organized into different packages for better structure and maintainability
 
 ## Features
 
