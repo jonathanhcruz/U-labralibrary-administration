@@ -52,10 +52,38 @@ public class DataMocks {
         ));
     }
 
+    /*
+        * Get all books
+        * @return ArrayList<BookStructureData>
+     */
     public ArrayList<BookStructureData> collectionOfBooks() {
         return bookStructureData;
     }
 
+    /*
+        * Get book by code
+        * @param code
+        * @return BookStructureData
+     */
+    public BookStructureData getBookByCode(String code) {
+        BookStructureData foundBook = null;
+        for (BookStructureData book : bookStructureData) {
+            if (!book.getCode().equals(code)) {
+                continue;
+            }
+
+            foundBook= book;
+            break;
+        }
+
+        return foundBook;
+    }
+
+    /*
+        * Delete book by code
+        * @param code
+        * @return String
+     */
     public String deleteBookByCode(String code) {
         for (int i = 0; i < bookStructureData.size(); i++) {
             if (bookStructureData.get(i).getCode().equals(code)) {
@@ -69,21 +97,31 @@ public class DataMocks {
         return null;
     }
 
+    /*
+        * Add new book
+        * @param newBook
+        * @return String
+     */
     public String addNewBook(BookStructureData newBook) {
         this.bookStructureData.add(newBook);
         System.out.println("Book with code " + newBook.getCode() + " has been added.");
         return newBook.getCode();
     }
 
+    /*
+        * Update book by code
+        * @param code
+        * @param bookToBeUpdated
+        * @return String
+     */
     public String updateBookByCode(String code, BookStructureData bookToBeUpdated) {
         for (int i = 0; i < this.bookStructureData.size(); i++) {
             if (this.bookStructureData.get(i).getCode().equals(code)) {
                 this.bookStructureData.set(i, bookToBeUpdated);
-                return "Book with code " + code + " has been updated.";
+                return code;
             }
         }
 
-        System.out.println("Book with code " + code + " not found.");
-        return code;
+        return null;
     }
 }

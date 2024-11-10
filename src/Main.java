@@ -20,7 +20,7 @@ public class Main {
     System.out.println('\n');
     System.out.println('\n');
 
-    if (actionNumber == 7) {
+    if (actionNumber == 8) {
       System.out.println("Goodbye");
       return;
     }
@@ -33,7 +33,7 @@ public class Main {
         break;
       case 2:
         System.out.println("Get book by code");
-        actions.getBookByCode(dataMocks.collectionOfBooks(), null);
+        actions.getBookByCode(dataMocks, null);
         break;
       case 3:
         System.out.println("Sort books by code");
@@ -48,6 +48,10 @@ public class Main {
         actions.addBook(dataMocks);
         break;
       case 6:
+        System.out.println("Update a book");
+        actions.updateBook(dataMocks);
+        break;
+      case 7:
         System.out.println("Delete a book");
         actions.deleteBook(dataMocks);
         break;

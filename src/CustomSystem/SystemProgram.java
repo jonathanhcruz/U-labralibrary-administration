@@ -14,8 +14,9 @@ public class SystemProgram {
     System.out.println("3. Sort books by code");
     System.out.println("4. Sort books by author");
     System.out.println("5. Add a book");
-    System.out.println("6. Delete a book");
-    System.out.println("7. Exit");
+    System.out.println("6. update a book");
+    System.out.println("7. Delete a book");
+    System.out.println("8. Exit");
 
     final SystemGetInfo systemGetInfo = new SystemGetInfo("Enter the number of the action you want to perform");
     final String action = systemGetInfo.getResponse();

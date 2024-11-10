@@ -16,7 +16,7 @@ public class Actions {
     }
   }
 
-  public void getBookByCode (ArrayList<BookStructureData> books, String code) {
+  public void getBookByCode (DataMocks dataMocks, String code) {
     String NewCode = code;
     if (NewCode == null) {
       SystemGetInfo systemGetInfo = new SystemGetInfo("Enter the code of the book");
@@ -27,23 +27,14 @@ public class Actions {
     System.out.println('\n');
     System.out.println(NewCode);
 
-    BookStructureData foundBook = null;
+    final BookStructureData bookResponse = dataMocks.getBookByCode(NewCode);
 
-    for (BookStructureData book : books) {
-      if (!book.getCode().equals(NewCode)) {
-        continue;
-      }
-
-      foundBook= book;
-      break;
-    }
-
-    if (foundBook == null) {
+    if (bookResponse == null) {
       System.out.println("Book with code " + NewCode + " not found.");
       return;
     }
 
-    ShowBookInfo.print(foundBook);
+    ShowBookInfo.print(bookResponse);
   }
 
   public void orderByCode(ArrayList<BookStructureData> books) {
@@ -61,7 +52,25 @@ public class Actions {
     BookStructureData book = getBookInfo.getBook();
     final String codeOfNewBook = dataMocks.addNewBook(book);
 
-    getBookByCode(dataMocks.collectionOfBooks(), codeOfNewBook);
+    getBookByCode(dataMocks, codeOfNewBook);
+  }
+
+  public void updateBook(DataMocks dataMocks) {
+    SystemGetInfo systemGetInfo = new SystemGetInfo("Enter the code of the book you want to update");
+    final String code = systemGetInfo.getResponse();
+
+    BookStructureData bookResponse = dataMocks.getBookByCode(code);
+    if (bookResponse == null) {
+      System.out.println("Book with code " + code + " not found.");
+      return;
+    }
+
+    GetBookInfo getBookInfo = new GetBookInfo(bookResponse.getCode());
+    final String bookCode = dataMocks.updateBookByCode(code, getBookInfo.getBook());
+    final BookStructureData getBookUpdated = dataMocks.getBookByCode(bookCode);
+
+    System.out.println('\n');
+    ShowBookInfo.print(getBookUpdated);
   }
 
   public void deleteBook(DataMocks dataMocks) {
